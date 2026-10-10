@@ -33,6 +33,19 @@ module edge_detector #(
     output reg [WIDTH-1:0] any_edge
 );
 
-    // TODO_IMPLEMENT: 在此完成设计。
+    reg [WIDTH-1:0] din_q;
 
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            din_q <= {WIDTH{1'b0}};
+            rise <= {WIDTH{1'b0}};
+            fall <= {WIDTH{1'b0}};
+            any_edge <= {WIDTH{1'b0}};
+        end else begin
+            din_q <= din;
+            rise <= ~din_q & din;
+            fall <= din_q & ~din;
+            any_edge <= din ^ din_q;
+        end
+    end
 endmodule

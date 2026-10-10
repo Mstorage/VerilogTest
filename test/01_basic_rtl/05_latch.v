@@ -27,6 +27,10 @@ module gated_latch #(
     output reg [WIDTH-1:0] q
 );
 
-    // TODO_IMPLEMENT: 在此完成设计。
+    always @(*) begin
+        if(gate) begin
+            q = d;
+        end
+    end// TODO_IMPLEMENT: 在此完成设计。
 
 endmodule

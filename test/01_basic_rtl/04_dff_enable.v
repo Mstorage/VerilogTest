@@ -31,6 +31,14 @@ module dff_enable #(
     output reg [WIDTH-1:0] q
 );
 
-    // TODO_IMPLEMENT: 在此完成设计。
+    always@(posedge clk or negedge rst_n)begin
+        if(!rst_n)begin
+            q <= {WIDTH{1'b0}};
+        end else if(en)begin
+            q <= d;
+        end else begin
+            q <= q;
+        end
+    end
 
 endmodule
